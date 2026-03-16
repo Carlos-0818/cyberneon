@@ -10,6 +10,7 @@ import { requireAdmin } from "../middlewares/requireAdmin.js";
 
 import healthRouter from "./health.routes.js";
 import productRouter from "./product.routes.js";
+import categoryRouter from "./category.routes.js";
 import authRouter from "./auth.routes.js";
 import userRouter from "./user.routes.js";
 
@@ -22,6 +23,7 @@ const router = Router();
  */
 router.use("/health", healthRouter);
 router.use("/products", productRouter);
+router.use("/categories", categoryRouter);
 router.use("/auth", authRouter);
 
 /**
