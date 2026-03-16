@@ -9,6 +9,7 @@ import { auth } from "../middlewares/auth.js";
 import { requireAdmin } from "../middlewares/requireAdmin.js";
 
 import healthRouter from "./health.routes.js";
+import productRouter from "./product.routes.js";
 import authRouter from "./auth.routes.js";
 import userRouter from "./user.routes.js";
 
@@ -20,6 +21,7 @@ const router = Router();
  * Public
  */
 router.use("/health", healthRouter);
+router.use("/products", productRouter);
 router.use("/auth", authRouter);
 
 /**
