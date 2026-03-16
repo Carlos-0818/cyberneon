@@ -13,6 +13,7 @@ import productRouter from "./product.routes.js";
 import categoryRouter from "./category.routes.js";
 import authRouter from "./auth.routes.js";
 import userRouter from "./user.routes.js";
+import orderRouter from "./order.routes.js";
 
 import adminProductRouter from "./admin/product.routes.js";
 
@@ -31,6 +32,7 @@ router.use("/auth", authRouter);
  */
 router.use(auth);
 router.use("/users", userRouter);
+router.use("/orders", orderRouter);
 
 /**
  * Admin
