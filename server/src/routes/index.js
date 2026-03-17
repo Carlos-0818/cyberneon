@@ -16,6 +16,7 @@ import userRouter from "./user.routes.js";
 import orderRouter from "./order.routes.js";
 
 import adminProductRouter from "./admin/product.routes.js";
+import adminCategoryRouter from "./admin/category.routes.js";
 import adminOrderRouter from "./admin/order.routes.js";
 
 const router = Router();
@@ -40,6 +41,7 @@ router.use("/orders", orderRouter);
  */
 router.use(requireAdmin);
 router.use("/admin/products", adminProductRouter);
+router.use("/admin/categories", adminCategoryRouter);
 router.use("/admin/orders", adminOrderRouter);
 
 export default router;
