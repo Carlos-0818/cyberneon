@@ -13,11 +13,14 @@ import { Link, useParams } from "react-router-dom";
 
 import { getProductBySlug } from "../services/productService";
 import { formatPrice } from "../lib/formatPrice";
+import { useCart } from "../contexts/CartContext";
 
 function ProductDetailPage() {
   const { slug } = useParams();
+  const { addToCart } = useCart();
 
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -39,6 +42,22 @@ function ProductDetailPage() {
 
     fetchProduct();
   }, [slug]);
+
+  function handleAddToCart() {
+    addToCart({
+      productId: product.id,
+      name: product.name,
+      slug: product.slug,
+      brand: product.brand,
+      price: product.price,
+      stock: product.stock,
+      image: product.images?.[0],
+      categoryName: product.category?.name,
+      quantity,
+    });
+
+    alert("已加入購物車");
+  }
 
   if (isLoading) {
     return (
@@ -110,6 +129,28 @@ function ProductDetailPage() {
               <p className="mt-6 leading-7 text-text-muted">
                 {product.description || "目前尚無商品描述。"}
               </p>
+
+              {/* === Block Start: Add To Cart === */}
+              <div className="mt-6 flex items-center gap-4">
+                <input
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => {
+                    const value = Number(e.target.value);
+                    setQuantity(value > 0 ? value : 1);
+                  }}
+                  className="w-20 rounded-xl border border-border bg-surface px-3 py-2 text-sm text-text-main"
+                />
+
+                <button
+                  onClick={handleAddToCart}
+                  className="rounded-xl bg-primary px-6 py-2 text-sm font-medium text-white hover:bg-primary-hover"
+                >
+                  加入購物車
+                </button>
+              </div>
+              {/* === Block End: Add To Cart === */}
 
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-text-main">

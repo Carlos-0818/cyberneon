@@ -5,12 +5,16 @@
  * - Application UI → Navigation → Simple
  *
  * 說明：
- * - 後續會加入 Auth / Cart / Admin 入口
+ * - 後續會加入 Auth / Admin 入口
  */
 
 import { Link, NavLink } from "react-router-dom";
 
+import { useCart } from "../contexts/CartContext";
+
 function Navbar() {
+  const { cartCount } = useCart();
+
   return (
     <>
       {/* === Block Start: Navbar === */}
@@ -36,6 +40,17 @@ function Navbar() {
               }
             >
               商品列表
+            </NavLink>
+
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-text-main"
+                  : "text-text-muted transition hover:text-text-main"
+              }
+            >
+              購物車 ({cartCount})
             </NavLink>
 
             {/* 預留 */}
