@@ -5,15 +5,26 @@
  * - Application UI → Navigation → Simple
  *
  * 說明：
- * - 後續會加入 Auth / Admin 入口
+ * - 後續會加入 Admin 入口
  */
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
+import { useAuth } from "../contexts/AuthContext";
 import { useCart } from "../contexts/CartContext";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useAuth();
   const { cartCount } = useCart();
+
+  /**
+   * 處理登出
+   */
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
 
   return (
     <>
@@ -28,7 +39,7 @@ function Navbar() {
             CyberNeon
           </Link>
 
-          {/* Navigation */}
+          {/* === Navigation === */}
           <nav className="flex items-center gap-6 text-sm font-medium">
             <NavLink
               to="/"
@@ -53,20 +64,45 @@ function Navbar() {
               購物車 ({cartCount})
             </NavLink>
 
-            {/* 預留 */}
-            <button
-              type="button"
-              className="cursor-not-allowed text-text-subtle"
-            >
-              登入
-            </button>
+            {/* === Block Start: Auth === */}
+            {isAuthenticated ? (
+              <>
+                <span className="text-text-muted">{user?.email}</span>
 
-            <button
-              type="button"
-              className="cursor-not-allowed text-text-subtle"
-            >
-              註冊
-            </button>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="text-text-muted transition hover:text-text-main"
+                >
+                  登出
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/auth/login"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-text-main"
+                      : "text-text-muted transition hover:text-text-main"
+                  }
+                >
+                  登入
+                </NavLink>
+
+                <NavLink
+                  to="/auth/signup"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-text-main"
+                      : "text-text-muted transition hover:text-text-main"
+                  }
+                >
+                  註冊
+                </NavLink>
+              </>
+            )}
+            {/* === Block End: Auth === */}
           </nav>
         </div>
       </header>
