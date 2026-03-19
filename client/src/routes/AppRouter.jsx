@@ -5,10 +5,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
+import RequireAuth from "./RequireAuth";
 import RequireGuest from "./RequireGuest";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
+import CheckoutPage from "../pages/CheckoutPage";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 
@@ -27,6 +29,11 @@ function AppRouter() {
         <Route element={<RequireGuest />}>
           <Route path="/auth/signup" element={<SignupPage />} />
           <Route path="/auth/login" element={<LoginPage />} />
+        </Route>
+
+        {/* === Private Pages === */}
+        <Route element={<RequireAuth />}>
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

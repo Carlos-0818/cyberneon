@@ -144,13 +144,12 @@ function CartPage() {
                 </p>
 
                 {/* === Block Start: Checkout Button === */}
-                <button
-                  type="button"
-                  onClick={() => alert("目前尚未實作，後續將會補齊")}
-                  className="mt-6 w-full rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover"
+                <Link
+                  to="/checkout"
+                  className="mt-6 block w-full rounded-xl bg-primary px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-primary-hover"
                 >
                   前往結帳
-                </button>
+                </Link>
                 {/* === Block End: Checkout Button === */}
               </div>
             </div>

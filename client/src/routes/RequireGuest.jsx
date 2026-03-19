@@ -6,12 +6,15 @@
  * - 已登入時導回首頁
  */
 
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 
 function RequireGuest() {
+  const location = useLocation();
   const { isAuthenticated, isCheckingAuth } = useAuth();
+
+  const from = location.state?.from.pathname || "/";
 
   if (isCheckingAuth) {
     return (
@@ -26,7 +29,7 @@ function RequireGuest() {
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={from} replace />;
   }
 
   return <Outlet />;
