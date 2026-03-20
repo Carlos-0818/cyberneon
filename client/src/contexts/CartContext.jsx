@@ -78,6 +78,13 @@ export function CartProvider({ children }) {
   }
 
   /**
+   * 清空購物車
+   */
+  function clearCart() {
+    setCartItems([]);
+  }
+
+  /**
    * 計算購物車商品總數
    */
   const cartCount = useMemo(() => {
@@ -90,6 +97,7 @@ export function CartProvider({ children }) {
     addToCart,
     updateCartItemQuantity,
     removeFromCart,
+    clearCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
