@@ -79,10 +79,14 @@ function CheckoutPage() {
         note: formData.note.trim(),
       };
 
-      await createOrder(payload);
+      const data = await createOrder(payload);
 
       clearCart();
-      navigate("/");
+      navigate("/order-success", {
+        state: {
+          orderNumber: data?.orderNumber || "",
+        },
+      });
     } catch (err) {
       console.error("Failed to create order:", err);
       setError("訂單建立失敗，請稍後再試。");
