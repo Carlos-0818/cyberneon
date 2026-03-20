@@ -5,7 +5,9 @@
  * - Application UI → Navigation → Simple
  *
  * 說明：
- * - 後續會加入 Admin 入口
+ * - 顯示前台主要導覽
+ * - 顯示購物車數量
+ * - 顯示登入狀態、我的訂單與登出入口
  */
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -67,6 +69,17 @@ function Navbar() {
             {/* === Block Start: Auth === */}
             {isAuthenticated ? (
               <>
+                <NavLink
+                  to="/orders"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-text-main"
+                      : "text-text-muted transition hover:text-text-main"
+                  }
+                >
+                  我的訂單
+                </NavLink>
+
                 <span className="text-text-muted">{user?.email}</span>
 
                 <button

@@ -10,11 +10,15 @@
  * - 提供後續導覽入口
  */
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 
 function OrderSuccessPage() {
   const location = useLocation();
   const orderNumber = location.state?.orderNumber || "";
+
+  if (!orderNumber) {
+    return <Navigate to="/orders" replace />;
+  }
 
   return (
     <div className="min-h-screen bg-surface-subtle">

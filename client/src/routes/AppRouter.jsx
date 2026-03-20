@@ -12,6 +12,8 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import OrderSuccessPage from "../pages/OrderSuccessPage";
+import OrdersPage from "../pages/OrdersPage";
+import OrderDetailPage from "../pages/OrderDetailPage";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 
@@ -24,7 +26,6 @@ function AppRouter() {
           <Route index element={<ProductListPage />} />
           <Route path="products/:slug" element={<ProductDetailPage />} />
           <Route path="cart" element={<CartPage />} />
-          <Route path="order-success" element={<OrderSuccessPage />} />
         </Route>
 
         {/* === Auth Pages === */}
@@ -36,6 +37,9 @@ function AppRouter() {
         {/* === Private Pages === */}
         <Route element={<RequireAuth />}>
           <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="order-success" element={<OrderSuccessPage />} />
+          <Route path="orders" element={<OrdersPage />} />
+          <Route path="orders/:id" element={<OrderDetailPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
