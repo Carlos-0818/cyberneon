@@ -472,12 +472,13 @@ Authorization: Bearer <token>
 
 ### Query Params
 
-| Name    | Type   | Description    |
-| ------- | ------ | -------------- |
-| page    | number | 分頁頁碼       |
-| limit   | number | 每頁筆數       |
-| keyword | string | 商品關鍵字搜尋 |
-| status  | string | 商品狀態篩選   |
+| Name     | Type   | Description    |
+| -------- | ------ | -------------- |
+| page     | number | 分頁頁碼       |
+| limit    | number | 每頁筆數       |
+| keyword  | string | 商品關鍵字搜尋 |
+| category | string | 分類 slug      |
+| status   | string | 商品狀態篩選   |
 
 ---
 

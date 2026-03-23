@@ -17,6 +17,7 @@ export const getAdminProducts = asyncHandler(async (req, res) => {
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   const keyword = req.query.keyword?.trim() || "";
+  const category = req.query.category?.trim() || "";
   const status = req.query.status?.trim() || "";
 
   const skip = (page - 1) * limit;
@@ -50,6 +51,13 @@ export const getAdminProducts = asyncHandler(async (req, res) => {
   // 狀態篩選
   if (status) {
     where.status = status;
+  }
+
+  // 分類篩選
+  if (category) {
+    where.category = {
+      slug: category,
+    };
   }
 
   const [products, total] = await prisma.$transaction([
