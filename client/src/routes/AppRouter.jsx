@@ -2,9 +2,10 @@
  * App Router
  */
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
+import AdminLayout from "../layouts/AdminLayout";
 import RequireAuth from "./RequireAuth";
 import RequireGuest from "./RequireGuest";
 import ProductListPage from "../pages/ProductListPage";
@@ -16,6 +17,10 @@ import OrdersPage from "../pages/OrdersPage";
 import OrderDetailPage from "../pages/OrderDetailPage";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
+
+import RequireAdmin from "./RequireAdmin";
+import AdminDashboardPage from "../pages/AdminDashboardPage";
+import AdminProductsPage from "../pages/AdminProductsPage";
 
 function AppRouter() {
   return (
@@ -40,6 +45,14 @@ function AppRouter() {
           <Route path="order-success" element={<OrderSuccessPage />} />
           <Route path="orders" element={<OrdersPage />} />
           <Route path="orders/:id" element={<OrderDetailPage />} />
+        </Route>
+
+        {/* === Admin Pages === */}
+        <Route element={<RequireAdmin />}>
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboardPage />} />
+            <Route path="products" element={<AdminProductsPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

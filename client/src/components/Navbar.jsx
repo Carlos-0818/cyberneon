@@ -80,6 +80,19 @@ function Navbar() {
                   我的訂單
                 </NavLink>
 
+                {user?.role === "admin" && (
+                  <NavLink
+                    to="/admin"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-text-main"
+                        : "text-text-muted transition hover:text-text-main"
+                    }
+                  >
+                    後台管理
+                  </NavLink>
+                )}
+
                 <span className="text-text-muted">{user?.email}</span>
 
                 <button
