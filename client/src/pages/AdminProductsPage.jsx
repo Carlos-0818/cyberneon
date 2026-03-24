@@ -14,8 +14,9 @@ import { useEffect, useMemo, useState } from "react";
 
 import { formatPrice } from "../lib/formatPrice";
 import { getStatusLabel } from "../lib/getStatusLabel";
-import { getAdminProducts } from "../services/productService";
+import { getAdminProducts, deleteProduct } from "../services/productService";
 import { getAdminCategories } from "../services/categoryService";
+import { Link } from "react-router-dom";
 
 function AdminProductsPage() {
   const [products, setProducts] = useState([]);
@@ -33,8 +34,34 @@ function AdminProductsPage() {
 
   const [categories, setCategories] = useState([]);
   const [page, setPage] = useState(1);
+  const [isDeletingId, setIsDeletingId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+
+  /**
+   * 取得商品列表
+   */
+  async function fetchProducts() {
+    try {
+      setIsLoading(true);
+      setError("");
+
+      const data = await getAdminProducts({
+        page,
+        keyword,
+        status,
+        category,
+      });
+
+      setProducts(data.products || []);
+      setPagination(data.pagination || null);
+    } catch (err) {
+      console.error("Failed to fetch admin products:", err);
+      setError("商品資料讀取失敗，請稍後再試。");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
     async function fetchCategories() {
@@ -50,28 +77,6 @@ function AdminProductsPage() {
   }, []);
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        setIsLoading(true);
-        setError("");
-
-        const data = await getAdminProducts({
-          page,
-          keyword,
-          status,
-          category,
-        });
-
-        setProducts(data.products || []);
-        setPagination(data.pagination || null);
-      } catch (err) {
-        console.error("Failed to fetch admin products:", err);
-        setError("商品資料讀取失敗，請稍後再試。");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
     fetchProducts();
   }, [page, keyword, status, category]);
 
@@ -136,6 +141,35 @@ function AdminProductsPage() {
     setPage(1);
   }
 
+  /**
+   * 刪除商品
+   */
+  async function handleDeleteProduct(productId) {
+    const isConfirmed = window.confirm("確定要刪除這筆商品嗎？");
+
+    if (!isConfirmed) return;
+
+    try {
+      setIsDeletingId(productId);
+      setError("");
+
+      await deleteProduct(productId);
+
+      // 如果刪除後當前頁沒資料，且不是第一頁，就往前一頁
+      if (products.length === 1 && page > 1) {
+        setPage((prev) => prev - 1);
+        return;
+      }
+
+      await fetchProducts();
+    } catch (err) {
+      console.error("Failed to delete product:", err);
+      setError("刪除商品失敗，請稍後再試。");
+    } finally {
+      setIsDeletingId("");
+    }
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="rounded-2xl border border-border bg-surface p-8 shadow-soft">
@@ -147,12 +181,12 @@ function AdminProductsPage() {
             </p>
           </div>
 
-          <button
-            type="button"
+          <Link
+            to="/admin/products/create"
             className="inline-flex rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover"
           >
             新增商品
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -314,17 +348,19 @@ function AdminProductsPage() {
 
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end gap-2">
-                        <button
-                          type="button"
+                        <Link
+                          to={`/admin/products/${product.id}/edit`}
                           className="rounded-xl border border-border px-3 py-2 text-sm font-medium text-text-main transition hover:bg-surface-muted"
                         >
                           編輯
-                        </button>
+                        </Link>
                         <button
                           type="button"
-                          className="rounded-xl border border-danger/30 px-3 py-2 text-sm font-medium text-danger transition hover:bg-danger/5"
+                          onClick={() => handleDeleteProduct(product.id)}
+                          disabled={isDeletingId === product.id}
+                          className="rounded-xl border border-danger/30 px-3 py-2 text-sm font-medium text-danger transition hover:bg-danger/5 disabled:cursor-not-allowed disabled:opacity-50"
                         >
-                          刪除
+                          {isDeletingId === product.id ? "刪除中..." : "刪除"}
                         </button>
                       </div>
                     </td>

@@ -36,3 +36,39 @@ export async function getAdminProducts(params = {}) {
 
   return response.data.data;
 }
+
+/**
+ * 取得後台單一商品詳情
+ */
+export async function getAdminProductById(productId) {
+  const response = await api.get(`/admin/products/${productId}`);
+
+  return response.data.data;
+}
+
+/**
+ * 新增商品
+ */
+export async function createProduct(payload) {
+  const response = await api.post("/admin/products", payload);
+
+  return response.data.data;
+}
+
+/**
+ * 更新商品
+ */
+export async function updateProduct(productId, payload) {
+  const response = await api.patch(`/admin/products/${productId}`, payload);
+
+  return response.data.data;
+}
+
+/**
+ * 刪除商品
+ */
+export async function deleteProduct(productId) {
+  const response = await api.delete(`/admin/products/${productId}`);
+
+  return response.data;
+}

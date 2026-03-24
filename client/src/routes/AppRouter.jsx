@@ -2,7 +2,7 @@
  * App Router
  */
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
 import AdminLayout from "../layouts/AdminLayout";
@@ -21,6 +21,8 @@ import LoginPage from "../pages/LoginPage";
 import RequireAdmin from "./RequireAdmin";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminProductsPage from "../pages/AdminProductsPage";
+import AdminCreateProductPage from "../pages/AdminCreateProductPage";
+import AdminEditProductPage from "../pages/AdminEditProductPage";
 
 function AppRouter() {
   return (
@@ -52,6 +54,14 @@ function AppRouter() {
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboardPage />} />
             <Route path="products" element={<AdminProductsPage />} />
+            <Route
+              path="products/create"
+              element={<AdminCreateProductPage />}
+            />
+            <Route
+              path="products/:id/edit"
+              element={<AdminEditProductPage />}
+            />
           </Route>
         </Route>
       </Routes>
