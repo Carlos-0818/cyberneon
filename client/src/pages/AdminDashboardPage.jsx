@@ -28,10 +28,10 @@ function AdminDashboardPage() {
       description: "目前可在前台顯示與販售的商品數量。",
     },
     {
-      id: "low-stock",
-      title: "低庫存商品",
-      value: "3",
-      description: "建議優先檢查庫存較低的商品狀態。",
+      id: "orders",
+      title: "訂單總數",
+      value: "12",
+      description: "目前系統內已建立的訂單筆數，可進一步查看詳情。",
     },
   ];
 
@@ -87,7 +87,8 @@ function AdminDashboardPage() {
       <div className="mt-6 rounded-2xl border border-border bg-surface p-8 shadow-soft">
         <h2 className="text-xl font-semibold text-text-main">快速操作</h2>
         <p className="mt-3 text-text-muted">
-          目前 Phase 1 僅提供商品管理，未來會逐步補上更多後台功能。
+          目前 Phase 1
+          僅提供商品管理與訂單管理入口，未來會逐步補上更多後台功能。
         </p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -98,6 +99,16 @@ function AdminDashboardPage() {
             <h3 className="text-lg font-semibold text-text-main">商品管理</h3>
             <p className="mt-2 text-sm text-text-muted">
               查看商品列表、狀態、價格與庫存資訊。
+            </p>
+          </Link>
+
+          <Link
+            to="/admin/orders"
+            className="rounded-2xl border border-border bg-surface-subtle p-6 transition hover:border-primary/40 hover:bg-surface"
+          >
+            <h3 className="text-lg font-semibold text-text-main">訂單管理</h3>
+            <p className="mt-2 text-sm text-text-muted">
+              查看訂單列表、訂單詳情與後續狀態管理。
             </p>
           </Link>
 

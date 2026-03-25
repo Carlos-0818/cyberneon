@@ -23,6 +23,8 @@ import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminProductsPage from "../pages/AdminProductsPage";
 import AdminCreateProductPage from "../pages/AdminCreateProductPage";
 import AdminEditProductPage from "../pages/AdminEditProductPage";
+import AdminOrdersPage from "../pages/AdminOrdersPage";
+import AdminOrderDetailPage from "../pages/AdminOrderDetailPage";
 
 function AppRouter() {
   return (
@@ -62,6 +64,8 @@ function AppRouter() {
               path="products/:id/edit"
               element={<AdminEditProductPage />}
             />
+            <Route path="orders" element={<AdminOrdersPage />} />
+            <Route path="orders/:id" element={<AdminOrderDetailPage />} />
           </Route>
         </Route>
       </Routes>

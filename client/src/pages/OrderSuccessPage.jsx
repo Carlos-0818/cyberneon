@@ -44,10 +44,10 @@ function OrderSuccessPage() {
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
-              to="/"
+              to="/orders"
               className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover"
             >
-              返回首頁
+              查看我的訂單
             </Link>
 
             <Link

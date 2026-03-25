@@ -51,6 +51,10 @@ function AdminLayout() {
               <NavLink to="/admin/products" className={getNavLinkClassName}>
                 商品管理
               </NavLink>
+
+              <NavLink to="/admin/orders" className={getNavLinkClassName}>
+                訂單管理
+              </NavLink>
             </nav>
           </div>
 
