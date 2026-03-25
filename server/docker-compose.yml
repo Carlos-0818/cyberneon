@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: cyberneon-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cyberneon
+    ports:
+      - "5433:5432"
+    volumes:
+      - cyberneon_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  cyberneon_postgres_data:
