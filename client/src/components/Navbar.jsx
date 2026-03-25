@@ -44,7 +44,7 @@ function Navbar() {
           {/* === Navigation === */}
           <nav className="flex items-center gap-6 text-sm font-medium">
             <NavLink
-              to="/"
+              to="/products"
               end
               className={({ isActive }) =>
                 isActive

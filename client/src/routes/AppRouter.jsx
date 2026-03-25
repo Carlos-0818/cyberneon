@@ -8,6 +8,7 @@ import MainLayout from "../layouts/MainLayout";
 import AdminLayout from "../layouts/AdminLayout";
 import RequireAuth from "./RequireAuth";
 import RequireGuest from "./RequireGuest";
+import HomePage from "../pages/HomePage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
@@ -32,7 +33,8 @@ function AppRouter() {
       <Routes>
         {/* === Public Pages === */}
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<ProductListPage />} />
+          <Route index element={<HomePage />} />
+          <Route path="products" element={<ProductListPage />} />
           <Route path="products/:slug" element={<ProductDetailPage />} />
           <Route path="cart" element={<CartPage />} />
         </Route>

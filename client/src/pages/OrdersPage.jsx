@@ -49,7 +49,7 @@ function OrdersPage() {
             </div>
 
             <Link
-              to="/"
+              to="/products"
               className="inline-flex rounded-xl border border-border bg-surface px-4 py-2 text-sm font-medium text-text-main transition hover:bg-surface-muted"
             >
               前往商品列表
@@ -80,7 +80,7 @@ function OrdersPage() {
 
             <div className="mt-6">
               <Link
-                to="/"
+                to="/products"
                 className="inline-flex rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover"
               >
                 前往商品列表

@@ -51,7 +51,7 @@ function OrderSuccessPage() {
             </Link>
 
             <Link
-              to="/"
+              to="/products"
               className="rounded-xl border border-border bg-surface px-4 py-2 text-sm font-medium text-text-main transition hover:bg-surface-muted"
             >
               繼續逛商品

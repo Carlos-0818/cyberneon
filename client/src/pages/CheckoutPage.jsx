@@ -118,7 +118,7 @@ function CheckoutPage() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  to="/"
+                  to="/products"
                   className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover"
                 >
                   前往商品列表

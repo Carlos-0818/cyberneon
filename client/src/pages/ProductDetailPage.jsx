@@ -93,7 +93,7 @@ function ProductDetailPage() {
         <div className="rounded-2xl border border-border bg-surface p-6 shadow-soft sm:p-8">
           <div className="mb-6">
             <Link
-              to="/"
+              to="/products"
               className="inline-flex items-center text-sm font-medium text-text-muted transition hover:text-text-main"
             >
               ← 返回商品列表

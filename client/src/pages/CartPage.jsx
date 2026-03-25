@@ -28,7 +28,7 @@ function CartPage() {
           <div className="mt-6 rounded-2xl border border-border bg-surface p-6 text-text-muted">
             購物車目前沒有商品
             <div className="mt-4">
-              <Link to="/" className="text-primary hover:underline">
+              <Link to="/products" className="text-primary hover:underline">
                 前往商品列表
               </Link>
             </div>
