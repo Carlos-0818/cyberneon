@@ -191,15 +191,6 @@ npm run dev
 
 ## Demo Account
 
-## Admin
-
-- email: admin@test.com
-- password: admintest
-
----
-
-## Demo Account
-
 ### Admin
 
 - email: admin@test.com
